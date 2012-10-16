@@ -3,7 +3,7 @@ syntax on
 " Some stuff about reading file types and indentations
 filetype plugin indent on
 " Colorscheme found in ~/.vim/colors
-colorscheme monokai
+colorscheme smyck
 " Pathogen bundle loader
 call pathogen#infect()
 " Line numbers
@@ -57,3 +57,4 @@ set showmatch
 augroup mkd
 	autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
 augroup END
+set clipboard=unnamed

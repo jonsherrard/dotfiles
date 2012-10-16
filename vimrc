@@ -54,3 +54,6 @@ imap <c-c> <Esc>
 " turn off irritating noises
 set noerrorbells
 set showmatch
+augroup mkd
+	autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
+augroup END

@@ -1,1 +1,3 @@
-# Jon Sherrard's thrilling "dot"files.
+# Jon Sherrard's Dot Files.
+
+Thrilling.

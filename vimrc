@@ -1,4 +1,4 @@
-" Syntax highlighting on
+" Syntax highlighting on!
 syntax on
 " Some stuff about reading file types and indentations
 filetype plugin indent on

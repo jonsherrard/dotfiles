@@ -57,6 +57,10 @@ function ql {
 	quick-look $1 
 }
 
+
+function cd(){
+	builtin cd "$*" && ls 
+}
 # Autojump
 
 if [ -f `brew --prefix`/etc/autojump ]; then

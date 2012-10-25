@@ -34,7 +34,7 @@ plugins=(git autojump osx)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/Users/jonsherrard/.rvm/gems/ruby-1.9.3-p194/bin:/Users/jonsherrard/.rvm/gems/ruby-1.9.3-p194@global/bin:/Users/jonsherrard/.rvm/rubies/ruby-1.9.3-p194/bin:/Users/jonsherrard/.rvm/bin::/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin/Users/jonsherrard/code/android/platform-tools/:/Users/jonsherrard/code/android/tools/
+# export PATH=/Users/jonsherrard/.rvm/gems/ruby-1.9.3-p194/bin:/Users/jonsherrard/.rvm/gems/ruby-1.9.3-p194@global/bin:/Users/jonsherrard/.rvm/rubies/ruby-1.9.3-p194/bin:/Users/jonsherrard/.rvm/bin::/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin/Users/jonsherrard/code/android/platform-tools/:/Users/jonsherrard/code/android/tools/
 
 # ALIASES
 
@@ -66,3 +66,8 @@ function cd(){
 if [ -f `brew --prefix`/etc/autojump ]; then
   . `brew --prefix`/etc/autojump
 fi
+
+export TERM=xterm-256color
+export EDITOR='vim'
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+

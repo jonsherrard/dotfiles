@@ -49,7 +49,7 @@ export PATH=:$PATH/Users/jonsherrard/code/android/platform-tools/
 export ANROID_HOME=:$PATH/Users/jonsherrard/code/
 export PATH=$PATH:/Users/jonsherrard/code/android/tools/
 CDPATH='.:~:/Applications/MAMP/htdocs'
-alias ls='ls -1 -a -G -F'
+alias ls='ls -1 -G -F -a'
 
 # FUNCTIONS
 

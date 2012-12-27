@@ -59,7 +59,13 @@ augroup mkd
 augroup END
 set clipboard=unnamed
 
- 
+" 'quote' a word
+nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
+" double quote a word
+nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
+" remove quotes from a word
+nnoremap wq :silent! normal mpeld bhd `ph<CR>
+
  " persistent undo
  set undofile
  set undodir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -69,3 +75,4 @@ set clipboard=unnamed
  set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
  set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
  set writebackup
+ set vb

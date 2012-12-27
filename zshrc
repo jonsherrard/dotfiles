@@ -33,11 +33,17 @@ plugins=(git autojump osx)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
+export ARCHFLAGS="-arch x86_64"
+
+ #Customize to your needs...
 # export PATH=/Users/jonsherrard/.rvm/gems/ruby-1.9.3-p194/bin:/Users/jonsherrard/.rvm/gems/ruby-1.9.3-p194@global/bin:/Users/jonsherrard/.rvm/rubies/ruby-1.9.3-p194/bin:/Users/jonsherrard/.rvm/bin::/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin/Users/jonsherrard/code/android/platform-tools/:/Users/jonsherrard/code/android/tools/
+
+# NO CORRECTS
+alias vim='nocorrect vim'
 
 # ALIASES
 
+alias gmail='vmail -c .vmailrc-andthatsit'
 alias home='cd ~/'
 alias htdocs='cd /Applications/MAMP/htdocs'
 alias cb='build.sh'
@@ -51,12 +57,23 @@ export PATH=$PATH:/Users/jonsherrard/code/android/tools/
 CDPATH='.:~:/Applications/MAMP/htdocs'
 alias ls='ls -1 -G -F -a'
 
-# FUNCTIONS
+ #FUNCTIONS
+export PATH=/Applications/MAMP/Library/bin/:/Applications/MAMP/bin/php5/bin/:/opt/local/bin:/opt/local/sbin:$PATH
+function adb {
+	~/code/android/platform-tools/adb $1
+	}
+
+function pgcreate {
+	/Users/jonsherrard/code/phonegap/lib/android/bin/create $1
+}
 
 function ql {
 	quick-look $1 
 }
 
+function ms {
+	mux start $1
+}
 
 function cd(){
 	builtin cd "$*" && ls 
@@ -70,4 +87,9 @@ fi
 export TERM=xterm-256color
 export EDITOR='vim'
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 

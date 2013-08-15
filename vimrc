@@ -1,3 +1,4 @@
+set nocompatible
 " Syntax highlighting on!
 syntax on
 " Some stuff about reading file types and indentations
@@ -5,6 +6,7 @@ filetype plugin indent on
 " Colorscheme found in ~/.vim/colors
 colorscheme monokai
 " Pathogen bundle loader
+runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 " Line numbers
 set number
@@ -43,8 +45,9 @@ set nocompatible
 set ignorecase
 set smartcase
 set autoindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2 
+set shiftwidth=2 
+set expandtab
 set smarttab
 set cinkeys=0{,0},:,0#,!^F
 " incremental search looks cool
@@ -68,11 +71,11 @@ nnoremap wq :silent! normal mpeld bhd `ph<CR>
 
  " persistent undo
  set undofile
- set undodir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+ set undodir=~/.tmp
 
  " backup to ~/.tmp 
  set backup 
- set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
- set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
+ set backupdir=~/.tmp
+ set directory=~/.tmp
  set writebackup
  set vb

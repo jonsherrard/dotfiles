@@ -33,11 +33,6 @@ plugins=(git autojump osx)
 
 source $ZSH/oh-my-zsh.sh
 
-export ARCHFLAGS="-arch x86_64"
-
- #Customize to your needs...
-# export PATH=/Users/jonsherrard/.rvm/gems/ruby-1.9.3-p194/bin:/Users/jonsherrard/.rvm/gems/ruby-1.9.3-p194@global/bin:/Users/jonsherrard/.rvm/rubies/ruby-1.9.3-p194/bin:/Users/jonsherrard/.rvm/bin::/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin/Users/jonsherrard/code/android/platform-tools/:/Users/jonsherrard/code/android/tools/
-
 # NO CORRECTS
 alias vim='nocorrect vim'
 
@@ -51,21 +46,11 @@ alias na='node app'
 alias re='cb; na;'
 alias hurl='cd hurl; bundle exec shotgun config.ru; open -a "Google Chrome" "http://dev:9393";'
 alias ec2='ssh -l ubuntu 54.247.84.184 -i ~/.ec2/shezserverkey.pem'
-export PATH=:$PATH/Users/jonsherrard/code/android/platform-tools/
-export ANROID_HOME=:$PATH/Users/jonsherrard/code/
-export PATH=$PATH:/Users/jonsherrard/code/android/tools/
 CDPATH='.:~:/Applications/MAMP/htdocs'
 alias ls='ls -1 -G -F -a'
 
  #FUNCTIONS
-export PATH=/Applications/MAMP/Library/bin/:/Applications/MAMP/bin/php5/bin/:/opt/local/bin:/opt/local/sbin:$PATH
-function adb {
-	~/code/android/platform-tools/adb $1
-	}
 
-function pgcreate {
-	/Users/jonsherrard/code/phonegap/lib/android/bin/create $1
-}
 
 function ql {
 	quick-look $1 

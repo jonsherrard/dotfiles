@@ -1,3 +1,4 @@
+[[ -s /Users/technicaldeveloper/.nvm/nvm.sh ]] && . /Users/technicaldeveloper/.nvm/nvm.sh  # This loads NVM
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -6,6 +7,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="pygmalion"
+
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -36,6 +38,11 @@ source $ZSH/oh-my-zsh.sh
 # NO CORRECTS
 alias vim='nocorrect vim'
 
+# MONGO
+
+export MONGO_PATH=/usr/local/mongodb
+export PATH=$PATH:$MONGO_PATH/bin
+
 # ALIASES
 
 alias gmail='vmail -c .vmailrc-andthatsit'
@@ -47,7 +54,7 @@ alias re='cb; na;'
 alias hurl='cd hurl; bundle exec shotgun config.ru; open -a "Google Chrome" "http://dev:9393";'
 alias ec2='ssh -l ubuntu 54.247.84.184 -i ~/.ec2/shezserverkey.pem'
 CDPATH='.:~:/Applications/MAMP/htdocs'
-alias ls='ls -1 -G -F -a'
+alias ls='ls -1 -G -F -la -tr'
 
  #FUNCTIONS
 
@@ -63,6 +70,10 @@ function ms {
 function cd(){
 	builtin cd "$*" && ls 
 }
+
+function mkcd () {
+  mkdir -p "$@" && eval cd "\"\$$#\""; 
+}
 # Autojump
 
 if [ -f `brew --prefix`/etc/autojump ]; then
@@ -77,4 +88,5 @@ export EDITOR='vim'
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+
 

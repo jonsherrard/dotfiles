@@ -37,6 +37,7 @@ source $ZSH/oh-my-zsh.sh
 
 # NO CORRECTS
 alias vim='nocorrect vim'
+alias grunt='nocorrect grunt'
 
 # MONGO
 

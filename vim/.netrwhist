@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Applications/MAMP/htdocs/onken1/src/client/jade'
-let g:netrw_dirhist_2='/Users/jonsherrard/.ssh'
-let g:netrw_dirhist_3='/Users/technicaldeveloper/dotfiles/vim/autoload'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Applications/MAMP/htdocs/ghost-themes/compiled/assets/css'
+let g:netrw_dirhist_2='/Applications/MAMP/htdocs/newsstand-stylist-templates/themes/stylist/app'
+let g:netrw_dirhist_3='/Applications/MAMP/htdocs/newsstand-stylist-templates/themes/stylist/app/scripts/views'
+let g:netrw_dirhist_4='/Applications/MAMP/htdocs/newsstand-stylist-templates/themes/stylist/app/scripts/views/_base'
+let g:netrw_dirhist_5='/Users/jonsherrard/.ssh'
+let g:netrw_dirhist_6='/private/var/application/trends/src/coffee/views'

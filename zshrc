@@ -38,6 +38,12 @@ source $ZSH/oh-my-zsh.sh
 # NO CORRECTS
 alias vim='nocorrect vim'
 alias grunt='nocorrect grunt'
+alias tree='nocorrect tree'
+alias treen='nocorrect tree -I node_modules -C'
+
+# NODE
+
+export NODE_ENV=development
 
 # MONGO
 
@@ -46,16 +52,16 @@ export PATH=$PATH:$MONGO_PATH/bin
 
 # ALIASES
 
-alias gmail='vmail -c .vmailrc-andthatsit'
 alias home='cd ~/'
 alias htdocs='cd /Applications/MAMP/htdocs'
 alias cb='build.sh'
 alias na='node app'
 alias re='cb; na;'
 alias hurl='cd hurl; bundle exec shotgun config.ru; open -a "Google Chrome" "http://dev:9393";'
-alias ec2='ssh -l ubuntu 54.247.84.184 -i ~/.ec2/shezserverkey.pem'
-CDPATH='.:~:/Applications/MAMP/htdocs'
-alias ls='ls -1 -G -F -la -tr'
+CDPATH='.:~:/var/application'
+alias ls='ls -1 -G -F -lash -tr'
+alias hosts='sudo vim /private/etc/hosts'
+alias vhosts='sudo vim /private/etc/apache2/extra/httpd-vhosts.conf'
 
  #FUNCTIONS
 

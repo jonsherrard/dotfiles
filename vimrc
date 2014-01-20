@@ -49,6 +49,7 @@ set tabstop=2
 set shiftwidth=2 
 set expandtab
 set smarttab
+set paste
 set cinkeys=0{,0},:,0#,!^F
 " incremental search looks cool
 set incsearch

@@ -1,0 +1,145 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Dotfiles sync script
+# Uses bare git repo at ~/.dotfiles with worktree at $HOME
+# Repo: github.com/jonsherrard/dotfiles
+
+GIT_DIR="$HOME/.dotfiles"
+WORK_TREE="$HOME"
+
+dotgit() {
+  git --git-dir="$GIT_DIR" --work-tree="$WORK_TREE" "$@"
+}
+
+# Tracked files to sync — add new dotfiles here
+TRACKED_FILES=(
+  "$HOME/.zshrc"
+  "$HOME/.tmux.conf"
+  "$HOME/.pi/agent/settings.json"
+  "$HOME/.pi/agent/skills/obsidian-sync/SKILL.md"
+  "$HOME/.pi/agent/skills/conventional-commits/SKILL.md"
+  "$HOME/.dotfiles-ignore"
+  "$HOME/.local/bin/dotfiles-sync"
+)
+
+usage() {
+  cat <<EOF
+dotfiles-sync — manage dotfiles via bare git repo
+
+Usage:
+  dotfiles-sync status     Show status of tracked dotfiles
+  dotfiles-sync diff       Show diff of changed dotfiles
+  dotfiles-sync add        Stage all tracked files
+  dotfiles-sync commit     Stage + commit with message prompt
+  dotfiles-sync push       Push to origin
+  dotfiles-sync pull       Pull from origin
+  dotfiles-sync sync       Pull, stage, commit (if changes), push
+  dotfiles-sync list       List tracked files
+  dotfiles-sync track FILE Add a new file to tracking
+  dotfiles-sync help       Show this help
+EOF
+}
+
+cmd_status() {
+  echo "=== Dotfiles status ==="
+  dotgit status
+}
+
+cmd_diff() {
+  dotgit diff
+  dotgit diff --staged
+}
+
+cmd_add() {
+  for f in "${TRACKED_FILES[@]}"; do
+    if [[ -f "$f" ]]; then
+      dotgit add "$f"
+    fi
+  done
+  echo "Staged tracked dotfiles."
+}
+
+cmd_commit() {
+  cmd_add
+  if dotgit diff --staged --quiet; then
+    echo "Nothing to commit."
+    return 0
+  fi
+  echo ""
+  echo "Staged changes:"
+  dotgit diff --staged --stat
+  echo ""
+  if [[ -n "${1:-}" ]]; then
+    dotgit commit -m "$1"
+  else
+    read -rp "Commit message (conventional commit): " msg
+    if [[ -z "$msg" ]]; then
+      echo "Aborted."
+      return 1
+    fi
+    dotgit commit -m "$msg"
+  fi
+}
+
+cmd_push() {
+  dotgit push origin main
+}
+
+cmd_pull() {
+  dotgit pull origin main --rebase
+}
+
+cmd_sync() {
+  echo "=== Pulling latest ==="
+  cmd_pull || true
+  echo ""
+  echo "=== Staging tracked files ==="
+  cmd_add
+  if dotgit diff --staged --quiet; then
+    echo "Everything up to date."
+    return 0
+  fi
+  echo ""
+  dotgit diff --staged --stat
+  echo ""
+  cmd_commit "${1:-}"
+  echo ""
+  echo "=== Pushing ==="
+  cmd_push
+  echo ""
+  echo "✓ Dotfiles synced."
+}
+
+cmd_list() {
+  echo "Tracked files:"
+  for f in "${TRACKED_FILES[@]}"; do
+    if [[ -f "$f" ]]; then
+      echo "  ✓ ${f/#$HOME/~}"
+    else
+      echo "  ✗ ${f/#$HOME/~} (missing)"
+    fi
+  done
+}
+
+cmd_track() {
+  local file="${1:?Usage: dotfiles-sync track <file>}"
+  local abs
+  abs="$(cd "$(dirname "$file")" && pwd)/$(basename "$file")"
+  dotgit add "$abs"
+  echo "Tracked: $abs"
+  echo "Add this to TRACKED_FILES in $0 to persist."
+}
+
+case "${1:-help}" in
+  status)  cmd_status ;;
+  diff)    cmd_diff ;;
+  add)     cmd_add ;;
+  commit)  cmd_commit "${2:-}" ;;
+  push)    cmd_push ;;
+  pull)    cmd_pull ;;
+  sync)    cmd_sync "${2:-}" ;;
+  list)    cmd_list ;;
+  track)   cmd_track "${2:-}" ;;
+  help|*)  usage ;;
+esac

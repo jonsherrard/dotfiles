@@ -75,6 +75,7 @@ export NVM_DIR="$HOME/.nvm"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+ZSH_THEME="minimal-mobile"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -162,6 +163,17 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 alias gb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)'"
+
+# Interactive file picker for staging (mobile-friendly: just type numbers)
+# Usage: gap (list files) | gap 1 3 5 (stage by number)
+gap() {
+  files=($(git diff --name-only; git ls-files --others --exclude-standard))
+  if [[ ${#files[@]} -eq 0 ]]; then echo "Nothing to stage"; return; fi
+  for i in "${!files[@]}"; do echo "  $((i+1))) ${files[$i]}"; done
+  if [[ $# -eq 0 ]]; then return; fi
+  for n in "$@"; do git add "${files[$((n-1))]}"; done
+  git status -sb
+}
 export PATH=$PATH:$HOME/.maestro/bin
 
 eval "$(pyenv init --path)"

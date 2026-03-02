@@ -1,0 +1,10 @@
+# Minimal status bar for mobile
+set -g status-right ""
+set -g status-left "[#S] "
+set -g status-style "bg=colour117,fg=black"
+set -g window-status-current-format " #I:#W "
+set -g window-status-current-style "bg=black,fg=colour117,bold"
+
+# Enable mouse scroll
+set -g mouse on
+

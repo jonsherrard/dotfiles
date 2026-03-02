@@ -165,7 +165,8 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 alias gb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)'"
 
 # Interactive file picker for staging (mobile-friendly: just type numbers)
-# Usage: gap (list files) | gap 1 3 5 (stage by number)
+# Usage: gp (list files) | gp 1 3 5 (stage by number)
+unalias gap 2>/dev/null
 gap() {
   files=($(git diff --name-only; git ls-files --others --exclude-standard))
   if [[ ${#files[@]} -eq 0 ]]; then echo "Nothing to stage"; return; fi

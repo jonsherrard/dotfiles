@@ -4,8 +4,8 @@
 SESSION=$(tmux display-message -p '#{session_name}')
 WIDTH=${1:-35}
 
-# Mark this pane as sidebar
-tmux set-option -p @is_sidebar "1"
+# Mark this pane as sidebar (must target explicitly since we're launched with -d)
+tmux set-option -p -t "$TMUX_PANE" @is_sidebar "1"
 
 draw_sidebar() {
     clear

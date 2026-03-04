@@ -92,16 +92,14 @@ When the user asks to commit (or you need to commit):
 
 ## Dotfiles Repo
 
-The user's dotfiles use a bare git repo pattern:
+The user's dotfiles live in `~/dotfiles` and use GNU Stow for symlinking.
+Packages: `zsh`, `tmux`, `pi`.
+
+When committing dotfiles:
 
 ```bash
-alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-```
-
-When committing dotfiles, always use this alias or the expanded form:
-
-```bash
-git --git-dir=$HOME/.dotfiles --work-tree=$HOME add <file>
-git --git-dir=$HOME/.dotfiles --work-tree=$HOME commit -m "<conventional commit message>"
-git --git-dir=$HOME/.dotfiles --work-tree=$HOME push
+cd ~/dotfiles
+git add <file>
+git commit -m "<conventional commit message>"
+git push
 ```

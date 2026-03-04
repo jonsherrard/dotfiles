@@ -1,0 +1,9 @@
+# Vim undo files
+*.un~
+
+# Auth credentials (never commit)
+pi/.pi/agent/auth.json
+
+# Pi runtime
+pi/.pi/agent/sessions/
+pi/.pi/agent/bin/

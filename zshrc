@@ -83,8 +83,10 @@ function mkcd () {
 }
 # Autojump
 
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
+if command -v brew &>/dev/null && [ -f "$(brew --prefix)/etc/autojump" ]; then
+  . "$(brew --prefix)/etc/autojump"
+elif [ -f /usr/share/autojump/autojump.sh ]; then
+  . /usr/share/autojump/autojump.sh
 fi
 
 export TERM=xterm-256color

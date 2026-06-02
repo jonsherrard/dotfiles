@@ -76,7 +76,9 @@ export NVM_DIR="$HOME/.nvm"
 plugins=(git)
 
 ZSH_THEME="minimal-mobile"
-source $ZSH/oh-my-zsh.sh
+if [ -s "$ZSH/oh-my-zsh.sh" ]; then
+  source "$ZSH/oh-my-zsh.sh"
+fi
 
 # User configuration
 
@@ -107,6 +109,7 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NPM_GITHUB_TOKEN=$(grep '//npm.pkg.github.com/:_authToken=' ~/.npmrc 2>/dev/null | cut -d= -f2)
 export PATH="/opt/homebrew/opt/php@8.0/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@8.0/sbin:$PATH"
 
@@ -177,5 +180,7 @@ gap() {
 }
 export PATH=$PATH:$HOME/.maestro/bin
 
-eval "$(pyenv init --path)"
+if command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
+fi
 export PATH="$HOME/.local/bin:$PATH"
